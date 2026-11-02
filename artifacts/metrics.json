@@ -1,0 +1,169 @@
+{
+  "experiment": "MCU-A bandgap trim-code prediction",
+  "dataset_note": "Synthetic, reproducible demonstration data; not production evidence.",
+  "selected_model": "extra_trees_300_leaf1",
+  "selection_rule": "Highest 3-fold wafer-grouped CV within-1-code rate; then lowest MAE; then highest exact-code rate.",
+  "features": [
+    "bg_untrim_V",
+    "pcm_vth_n_mV",
+    "pcm_vth_p_mV",
+    "pcm_rs_ohm_sq",
+    "pcm_tox_A",
+    "pcm_mobility_rel",
+    "x_mm",
+    "y_mm",
+    "radius_mm"
+  ],
+  "feature_training_ranges": {
+    "bg_untrim_V": {
+      "min": 1.09671,
+      "max": 1.26502
+    },
+    "pcm_vth_n_mV": {
+      "min": 394.91,
+      "max": 477.82
+    },
+    "pcm_vth_p_mV": {
+      "min": -518.78,
+      "max": -452.8
+    },
+    "pcm_rs_ohm_sq": {
+      "min": 258.59,
+      "max": 326.13
+    },
+    "pcm_tox_A": {
+      "min": 19.383,
+      "max": 21.248
+    },
+    "pcm_mobility_rel": {
+      "min": 0.8619,
+      "max": 1.1067
+    },
+    "x_mm": {
+      "min": -88.0,
+      "max": 88.0
+    },
+    "y_mm": {
+      "min": -88.0,
+      "max": 88.0
+    },
+    "radius_mm": {
+      "min": 0.0,
+      "max": 91.21
+    }
+  },
+  "target": "bg_trim_code_opt",
+  "target_code_range": [
+    0,
+    63
+  ],
+  "split": {
+    "method": "Fixed 25% wafer holdout; 3-fold GroupKFold model selection on training wafers",
+    "seed": 0,
+    "train_rows": 5052,
+    "test_rows": 1263,
+    "train_wafers": [
+      "MA1-W01",
+      "MA1-W02",
+      "MA1-W03",
+      "MA1-W04",
+      "MA1-W05",
+      "MA2-W01",
+      "MA2-W02",
+      "MA2-W05",
+      "MA3-W01",
+      "MA3-W03",
+      "MA3-W04",
+      "MA3-W05"
+    ],
+    "test_wafers": [
+      "MA2-W03",
+      "MA2-W04",
+      "MA3-W02"
+    ],
+    "overlap": []
+  },
+  "holdout_metrics": {
+    "n": 1263,
+    "exact_code_accuracy": 0.7885985748218527,
+    "within_1_code_accuracy": 0.9968329374505146,
+    "mae_codes": 0.22169437846397466,
+    "rmse_codes": 0.524913747014903
+  },
+  "median_code_baseline": {
+    "predicted_code": 38,
+    "n": 1263,
+    "exact_code_accuracy": 0.05859065716547902,
+    "within_1_code_accuracy": 0.17418844022169439,
+    "mae_codes": 4.832937450514648,
+    "rmse_codes": 6.014498186899859
+  },
+  "reference_hist_gradient_boosting_holdout": {
+    "n": 1263,
+    "exact_code_accuracy": 0.7577197149643705,
+    "within_1_code_accuracy": 0.9794140934283452,
+    "mae_codes": 0.28028503562945367,
+    "rmse_codes": 0.6857906302936595,
+    "estimated_predict_then_verify_iterations": 1.3452098178939034
+  },
+  "conventional_flow_on_test_wafers": {
+    "mean_iterations": 6.595407759303246,
+    "mean_test_time_ms": 28.6848772763262
+  },
+  "predict_then_verify_estimate": {
+    "rule": "1 verification if exact; 2 checks if within one code; 1 + 6-bit search iterations otherwise.",
+    "mean_iterations": 1.227236737925574,
+    "iteration_reduction_fraction": 0.8139255702280912,
+    "note": "Iteration estimate only; tester wall-clock savings require hardware timing."
+  },
+  "grouped_cv_results": [
+    {
+      "model": "extra_trees_300_leaf1",
+      "cv_exact_code_accuracy": 0.7624703087885987,
+      "cv_within_1_code_accuracy": 0.9835708630245447,
+      "cv_mae_codes": 0.27256532066508316,
+      "cv_rmse_codes": 0.6563339952998045
+    },
+    {
+      "model": "extra_trees_100_leaf1",
+      "cv_exact_code_accuracy": 0.7567300079176563,
+      "cv_within_1_code_accuracy": 0.9798099762470308,
+      "cv_mae_codes": 0.28582739509105304,
+      "cv_rmse_codes": 0.6893592701256606
+    },
+    {
+      "model": "extra_trees_300_leaf2",
+      "cv_exact_code_accuracy": 0.757125890736342,
+      "cv_within_1_code_accuracy": 0.9738717339667459,
+      "cv_mae_codes": 0.3076009501187648,
+      "cv_rmse_codes": 0.8449403960618277
+    },
+    {
+      "model": "extra_trees_100_leaf2",
+      "cv_exact_code_accuracy": 0.7410926365795726,
+      "cv_within_1_code_accuracy": 0.9712984956452889,
+      "cv_mae_codes": 0.32937450514647665,
+      "cv_rmse_codes": 0.8808848216384993
+    },
+    {
+      "model": "hist_gradient_boosting",
+      "cv_exact_code_accuracy": 0.7117973079968328,
+      "cv_within_1_code_accuracy": 0.9376484560570071,
+      "cv_mae_codes": 0.43388756927949323,
+      "cv_rmse_codes": 0.9261387595842322
+    }
+  ],
+  "software": {
+    "python": "3.11.1",
+    "numpy": "1.26.4",
+    "pandas": "2.2.2",
+    "scikit_learn": "1.9.0",
+    "joblib": "1.5.3"
+  },
+  "artifacts": {
+    "model": "bandgap_trim_model.joblib",
+    "data_quality_report": "data_quality_report.json",
+    "holdout_predictions": "heldout_predictions.csv",
+    "grouped_cv_scores": "grouped_cv_scores.csv"
+  }
+}

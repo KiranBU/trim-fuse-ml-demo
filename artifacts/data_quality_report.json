@@ -1,0 +1,60 @@
+{
+  "source_file": "mcu_trim_fuse.csv",
+  "raw_rows": 8420,
+  "raw_columns": 42,
+  "rows_after_exact_duplicate_cleanup": 8420,
+  "exact_duplicate_rows_removed": 0,
+  "duplicate_die_ids": 0,
+  "source_missing_cells": 0,
+  "target_missing_rows_removed": 0,
+  "feature_missing_values_before_imputation_mcu_a": {
+    "bg_untrim_V": 0,
+    "pcm_vth_n_mV": 0,
+    "pcm_vth_p_mV": 0,
+    "pcm_rs_ohm_sq": 0,
+    "pcm_tox_A": 0,
+    "pcm_mobility_rel": 0,
+    "x_mm": 0,
+    "y_mm": 0,
+    "radius_mm": 0
+  },
+  "non_finite_values_before_imputation": 0,
+  "infinite_predictor_values": 0,
+  "invalid_or_non_integer_target_rows": 0,
+  "target_min": 0,
+  "target_max": 63,
+  "derivative_row_counts": {
+    "MCU-A": 6315,
+    "MCU-B": 1263,
+    "MCU-C": 842
+  },
+  "mcu_a_rows": 6315,
+  "mcu_a_wafer_count": 15,
+  "max_radius_vs_xy_difference_mm": 0.004993899462789386,
+  "radius_check_tolerance_mm": 0.01,
+  "radius_check_passed": true,
+  "iqr_outlier_counts_mcu_a_review_only": {
+    "bg_untrim_V": 134,
+    "pcm_vth_n_mV": 210,
+    "pcm_vth_p_mV": 87,
+    "pcm_rs_ohm_sq": 0,
+    "pcm_tox_A": 1,
+    "pcm_mobility_rel": 33,
+    "x_mm": 0,
+    "y_mm": 0,
+    "radius_mm": 0
+  },
+  "outlier_policy": "IQR flags are reviewed, not automatically deleted.",
+  "missing_value_policy": "Rows with a missing target are excluded. Numeric predictor gaps, if any, are imputed with training-fold medians inside the model pipeline.",
+  "duplicate_policy": "Exact duplicate rows are removed. Repeated die IDs raise an error for review.",
+  "train_rows": 5052,
+  "test_rows": 1263,
+  "train_wafer_count": 12,
+  "test_wafer_count": 3,
+  "test_wafer_ids": [
+    "MA2-W03",
+    "MA2-W04",
+    "MA3-W02"
+  ],
+  "train_and_test_wafer_overlap": []
+}
